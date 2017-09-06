@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<script src="https://use.fontawesome.com/ca15b00a18.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+ <style>
+        body {background-image: url("http://wutsapp.net/images/dist/bg.png");
+    /*color: white;*/}
+				
+</style>
+<script>
+
+
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("livesearch").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("livesearch").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","search.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
+
+</head>
+<body>
+
+
+<form>
+<input type="text"  id="submit" name="submit">
+<input type="button"onclick="showUser(submit.value)" value="Search">
+<div id="livesearch"></div>
+
+</form>
+ 
+</body>
+</html>
